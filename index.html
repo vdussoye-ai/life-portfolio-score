@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Life Portfolio Score™ — Five Capitals Assessment</title>
+<meta name="description" content="Discover how balanced your life really is across wealth, career, relationships, health, and purpose. Take the free 5-minute assessment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #faf9f7;
+  --bg-white: #ffffff;
+  --bg-warm: #f5f2ee;
+  --bg-accent: #eef4f8;
+  --navy: #1a2744;
+  --navy-light: #2d3f5e;
+  --teal: #0d7377;
+  --teal-light: #14919b;
+  --teal-bg: #e8f6f6;
+  --coral: #e07052;
+  --coral-light: #fdf0ec;
+  --amber: #d4940a;
+  --amber-light: #fef8ea;
+  --green: #1a8a5c;
+  --green-light: #eaf7f0;
+  --purple: #6b4c9a;
+  --purple-light: #f3eef9;
+  --text: #1a2744;
+  --text-secondary: #5a6478;
+  --text-muted: #8e95a3;
+  --border: #e5e2de;
+  --border-light: #f0ede9;
+  --shadow-sm: 0 1px 3px rgba(26,39,68,0.06);
+  --shadow-md: 0 4px 16px rgba(26,39,68,0.08);
+  --shadow-lg: 0 8px 32px rgba(26,39,68,0.10);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Capital colors */
+  --financial: #0d7377;
+  --career: #6b4c9a;
+  --relationships: #e07052;
+  --health: #1a8a5c;
+  --spiritual: #d4940a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ─── HEADER / INTRO ─── */
+.header {
+  text-align: center;
+  padding: 48px 0 36px;
+}
+
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--teal-bg);
+  color: var(--teal);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.header-badge svg { flex-shrink: 0; }
+
+.header h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(30px, 6vw, 44px);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--navy);
+  margin-bottom: 16px;
+  font-optical-sizing: auto;
+}
+
+.header h1 span {
+  color: var(--teal);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.header p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 460px;
+  margin: 0 auto 32px;
+  font-weight: 400;
+}
+
+.start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: 0 4px 16px rgba(13,115,119,0.25);
+}
+
+.start-btn:hover {
+  background: var(--teal-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(13,115,119,0.3);
+}
+
+.start-btn svg { transition: transform var(--transition); }
+.start-btn:hover svg { transform: translateX(3px); }
+
+.trust-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.trust-item svg { color: var(--teal); flex-shrink: 0; }
+
+/* ─── PROGRESS BAR ─── */
+.progress-wrapper {
+  padding: 0 0 24px;
+  display: none;
+}
+
+.progress-wrapper.visible { display: block; }
+
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.progress-section-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.progress-section-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-count {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.progress-track {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--teal);
+  border-radius: 4px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+}
+
+.progress-sections {
+  display: flex;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.progress-dot {
+  flex: 1;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--border);
+  transition: background var(--transition);
+}
+
+.progress-dot.done { background: var(--teal); }
+.progress-dot.active { background: var(--teal); opacity: 0.5; }
+
+/* ─── SCREENS ─── */
+.screen {
+  display: none;
+  animation: fadeIn 0.35s ease;
+}
+
+.screen.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── SETUP SCREEN ─── */
+.setup-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.setup-card h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.setup-card .subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: 0.2px;
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  transition: all var(--transition);
+  outline: none;
+}
+
+.form-input:focus, .form-select:focus {
+  border-color: var(--teal);
+  background: var(--bg-white);
+  box-shadow: 0 0 0 3px rgba(13,115,119,0.1);
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%235a6478' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.canada-fields {
+  display: none;
+  margin-top: 16px;
+  padding: 20px;
+  background: var(--bg-accent);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(13,115,119,0.1);
+}
+
+.canada-fields.visible { display: block; }
+
+.canada-fields .canada-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.canada-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .canada-grid { grid-template-columns: 1fr; }
+}
+
+.setup-actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ─── QUESTION CARD ─── */
+.question-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.question-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.question-card[data-capital="financial"]::before { background: var(--financial); }
+.question-card[data-capital="career"]::before { background: var(--career); }
+.question-card[data-capital="relationships"]::before { background: var(--relationships); }
+.question-card[data-capital="health"]::before { background: var(--health); }
+.question-card[data-capital="spiritual"]::before { background: var(--spiritual); }
+
+.question-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.cat-financial { background: var(--teal-bg); color: var(--financial); }
+.cat-career { background: var(--purple-light); color: var(--career); }
+.cat-relationships { background: var(--coral-light); color: var(--relationships); }
+.cat-health { background: var(--green-light); color: var(--health); }
+.cat-spiritual { background: var(--amber-light); color: var(--spiritual); }
+
+.question-text {
+  font-family: 'Fraunces', serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--navy);
+  margin-bottom: 28px;
+}
+
+/* Slider question */
+.slider-container {
+  padding: 8px 0;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.slider-track {
+  position: relative;
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 6px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--teal);
+  border: 3px solid var(--bg-white);
+  box-shadow: 0 2px 8px rgba(13,115,119,0.3);
+  cursor: grab;
+  transition: transform 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.15);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--teal);
+  border: 3px solid var(--bg-white);
+  box-shadow: 0 2px 8px rgba(13,115,119,0.3);
+  cursor: grab;
+}
+
+.slider-value {
+  text-align: center;
+  margin-top: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.slider-value-label {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Choice question */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.choice-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px 20px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  cursor: pointer;
+  transition: all var(--transition);
+  text-align: left;
+}
+
+.choice-btn:hover {
+  border-color: var(--teal);
+  background: var(--teal-bg);
+}
+
+.choice-btn.selected {
+  border-color: var(--teal);
+  background: var(--teal-bg);
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.choice-radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+
+.choice-btn.selected .choice-radio {
+  border-color: var(--teal);
+  background: var(--teal);
+}
+
+.choice-btn.selected .choice-radio::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+/* Navigation */
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light);
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-back:hover {
+  border-color: var(--text-secondary);
+  color: var(--text);
+}
+
+.btn-next {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: var(--teal);
+  border: none;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: 0 2px 8px rgba(13,115,119,0.2);
+}
+
+.btn-next:hover {
+  background: var(--teal-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(13,115,119,0.25);
+}
+
+.btn-next:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-next svg { transition: transform var(--transition); }
+.btn-next:hover svg { transform: translateX(2px); }
+
+/* ─── RESULTS ─── */
+.results-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.results-header h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.results-header p {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.overall-score-card {
+  background: var(--navy);
+  border-radius: var(--radius);
+  padding: 36px;
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.overall-score-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(13,115,119,0.2), transparent 70%);
+}
+
+.overall-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.overall-number {
+  font-family: 'Fraunces', serif;
+  font-size: 72px;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+  margin-bottom: 4px;
+  position: relative;
+}
+
+.overall-number sup {
+  font-size: 28px;
+  font-weight: 400;
+  opacity: 0.5;
+  vertical-align: super;
+}
+
+.overall-descriptor {
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+}
+
+/* Radar chart */
+.radar-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.radar-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.radar-container {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+#radarChart {
+  max-width: 340px;
+  max-height: 340px;
+}
+
+/* Capital score cards */
+.capital-scores {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.capital-row {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.capital-row:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.capital-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.capital-icon.financial { background: var(--teal-bg); }
+.capital-icon.career { background: var(--purple-light); }
+.capital-icon.relationships { background: var(--coral-light); }
+.capital-icon.health { background: var(--green-light); }
+.capital-icon.spiritual { background: var(--amber-light); }
+
+.capital-info { flex: 1; min-width: 0; }
+
+.capital-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.capital-bar-track {
+  width: 100%;
+  height: 6px;
+  background: var(--bg);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.capital-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 0%;
+}
+
+.capital-bar-fill.financial { background: var(--financial); }
+.capital-bar-fill.career { background: var(--career); }
+.capital-bar-fill.relationships { background: var(--relationships); }
+.capital-bar-fill.health { background: var(--health); }
+.capital-bar-fill.spiritual { background: var(--spiritual); }
+
+.capital-score-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--navy);
+  min-width: 36px;
+  text-align: right;
+}
+
+.capital-insight {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* Insights card */
+.insights-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.insights-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+
+.insight-item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.insight-item:last-child { border-bottom: none; }
+
+.insight-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.insight-icon.strength { background: var(--green-light); }
+.insight-icon.growth { background: var(--coral-light); }
+.insight-icon.tip { background: var(--amber-light); }
+
+.insight-content h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 3px;
+}
+
+.insight-content p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* PDF gate */
+.pdf-gate {
+  background: linear-gradient(135deg, var(--navy) 0%, #2d3f5e 100%);
+  border-radius: var(--radius);
+  padding: 36px;
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pdf-gate::before {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(13,115,119,0.15), transparent 70%);
+}
+
+.pdf-gate h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.pdf-gate p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.pdf-gate .email-form {
+  display: flex;
+  gap: 10px;
+  max-width: 420px;
+  margin: 0 auto;
+  position: relative;
+}
+
+@media (max-width: 480px) {
+  .pdf-gate .email-form { flex-direction: column; }
+}
+
+.pdf-gate .email-input {
+  flex: 1;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 15px;
+  color: white;
+  outline: none;
+  transition: all var(--transition);
+}
+
+.pdf-gate .email-input::placeholder { color: rgba(255,255,255,0.4); }
+
+.pdf-gate .email-input:focus {
+  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.18);
+}
+
+.pdf-gate .email-submit {
+  padding: 14px 28px;
+  background: var(--teal);
+  border: none;
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.pdf-gate .email-submit:hover { background: var(--teal-light); }
+
+.pdf-success {
+  display: none;
+  color: white;
+  font-size: 15px;
+  position: relative;
+}
+
+.pdf-success svg { vertical-align: middle; margin-right: 6px; }
+
+/* Retake */
+.retake-row {
+  text-align: center;
+  padding: 16px 0 40px;
+}
+
+.retake-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  border-radius: 100px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.retake-btn:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  text-align: center;
+  padding: 32px 0;
+  border-top: 1px solid var(--border-light);
+  margin-top: 24px;
+}
+
+.footer p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.footer a { color: var(--teal); text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .container { padding: 16px; }
+  .header { padding: 36px 0 28px; }
+  .question-card { padding: 28px 22px; }
+  .setup-card { padding: 24px; }
+  .overall-score-card { padding: 28px; }
+  .overall-number { font-size: 56px; }
+  .radar-card { padding: 24px 16px; }
+  .capital-row { padding: 16px; gap: 12px; }
+  .pdf-gate { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ─── INTRO SCREEN ─── -->
+  <div class="screen active" id="introScreen">
+    <div class="header">
+      <div class="header-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        5-Minute Assessment
+      </div>
+      <h1>What's your<br><span>Life Portfolio Score?</span></h1>
+      <p>Measure how balanced your life really is across wealth, career, relationships, health, and purpose — and get a personalized roadmap.</p>
+      <button class="start-btn" onclick="startAssessment()">
+        Take the Assessment
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          No signup required
+        </div>
+        <div class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          Results are free
+        </div>
+        <div class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Data stays private
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SETUP SCREEN ─── -->
+  <div class="screen" id="setupScreen">
+    <div class="setup-card">
+      <h2>Before we start</h2>
+      <p class="subtitle">A few quick details to personalize your assessment.</p>
+
+      <div class="form-group">
+        <label class="form-label">Your first name</label>
+        <input type="text" class="form-input" id="userName" placeholder="e.g. Priya" autocomplete="given-name">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Your age</label>
+        <input type="number" class="form-input" id="userAge" placeholder="e.g. 42" min="18" max="80" autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Where are you based?</label>
+        <select class="form-select" id="userCountry" onchange="toggleCanada()">
+          <option value="">Select your country</option>
+          <option value="CA">Canada</option>
+          <option value="US">United States</option>
+          <option value="UK">United Kingdom</option>
+          <option value="AU">Australia</option>
+          <option value="OTHER">Other</option>
+        </select>
+      </div>
+
+      <div class="canada-fields" id="canadaFields">
+        <div class="canada-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Canada-specific fields (optional)
+        </div>
+        <div class="canada-grid">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Annual CPP/QPP contributions</label>
+            <input type="number" class="form-input" id="cppContrib" placeholder="$0">
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">EI eligible?</label>
+            <select class="form-select" id="eiEligible">
+              <option value="">Select</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+              <option value="unsure">Not sure</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">RRSP room remaining</label>
+            <input type="number" class="form-input" id="rrspRoom" placeholder="$0">
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">TFSA room remaining</label>
+            <input type="number" class="form-input" id="tfsaRoom" placeholder="$0">
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-actions">
+        <button class="btn-next" onclick="beginQuestions()">
+          Let's go
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PROGRESS ─── -->
+  <div class="progress-wrapper" id="progressBar">
+    <div class="progress-top">
+      <div class="progress-section-name" id="progressLabel">Financial Capital</div>
+      <div class="progress-count" id="progressCount">1 / 30</div>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-sections" id="progressDots"></div>
+  </div>
+
+  <!-- ─── QUESTION SCREEN ─── -->
+  <div class="screen" id="questionScreen">
+    <div class="question-card" id="questionCard">
+      <div class="question-category" id="questionCat"></div>
+      <div class="question-text" id="questionText"></div>
+      <div id="questionBody"></div>
+      <div class="nav-row">
+        <button class="btn-back" id="btnBack" onclick="prevQuestion()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Back
+        </button>
+        <button class="btn-next" id="btnNext" onclick="nextQuestion()">
+          Next
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── RESULTS SCREEN ─── -->
+  <div class="screen" id="resultsScreen">
+    <div class="results-header">
+      <h2 id="resultsGreeting">Your Life Portfolio Score</h2>
+      <p>Here's a snapshot of how balanced your life is today.</p>
+    </div>
+
+    <div class="overall-score-card">
+      <div class="overall-label">Overall Score</div>
+      <div class="overall-number" id="overallScore">0<sup>/100</sup></div>
+      <div class="overall-descriptor" id="overallDesc" style="color: rgba(255,255,255,0.7);"></div>
+    </div>
+
+    <div class="radar-card">
+      <h3>Five Capitals Overview</h3>
+      <div class="radar-container">
+        <canvas id="radarChart" width="340" height="340"></canvas>
+      </div>
+    </div>
+
+    <div class="capital-scores" id="capitalScores"></div>
+
+    <div class="insights-card" id="insightsCard">
+      <h3>Key Insights</h3>
+      <div id="insightsList"></div>
+    </div>
+
+    <div class="pdf-gate" id="pdfGate">
+      <h3>Get your full Strategic Life Brief</h3>
+      <p>Detailed breakdown, trajectory projections, and 3 priority actions per capital — delivered as a beautiful PDF.</p>
+      <div class="email-form" id="emailForm">
+        <input type="email" class="email-input" id="pdfEmail" placeholder="your@email.com" autocomplete="email">
+        <button class="email-submit" onclick="submitEmail()">Send me the PDF</button>
+      </div>
+      <div class="pdf-success" id="pdfSuccess">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ec47a" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        Check your inbox — your Strategic Life Brief is on the way!
+      </div>
+    </div>
+
+    <div class="retake-row">
+      <button class="retake-btn" onclick="retake()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        Retake Assessment
+      </button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Life Portfolio Score™ — Built on the Five Capitals Framework<br>
+    <a href="#">Learn about the methodology</a></p>
+  </div>
+
+</div>
+
+<script>
+// ─── QUESTION BANK ───
+const QUESTIONS = [
+  // ── FINANCIAL CAPITAL (6 questions) ──
+  {
+    id: 'f1', capital: 'financial', cat: 'Financial Capital',
+    text: 'How many months could you sustain your current lifestyle without any income?',
+    type: 'choice',
+    options: [
+      { label: 'Less than 1 month', value: 10 },
+      { label: '1–3 months', value: 30 },
+      { label: '3–6 months', value: 55 },
+      { label: '6–12 months', value: 75 },
+      { label: 'More than 12 months', value: 95 }
+    ]
+  },
+  {
+    id: 'f2', capital: 'financial', cat: 'Financial Capital',
+    text: 'What percentage of your income are you saving or investing each month?',
+    type: 'choice',
+    options: [
+      { label: '0% — I spend everything (or more)', value: 10 },
+      { label: '1–10%', value: 35 },
+      { label: '10–20%', value: 60 },
+      { label: '20–35%', value: 80 },
+      { label: '35%+ — aggressive saver', value: 95 }
+    ]
+  },
+  {
+    id: 'f3', capital: 'financial', cat: 'Financial Capital',
+    text: 'How diversified are your income sources?',
+    type: 'choice',
+    options: [
+      { label: 'Single source (one job)', value: 20 },
+      { label: 'One job + small side income', value: 45 },
+      { label: 'Two meaningful income streams', value: 65 },
+      { label: 'Three or more income sources', value: 85 },
+      { label: 'Fully diversified with passive income', value: 95 }
+    ]
+  },
+  {
+    id: 'f4', capital: 'financial', cat: 'Financial Capital',
+    text: 'How confident are you in your retirement/financial independence timeline?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'Not at all', maxLabel: 'Very confident',
+    valueLabels: { 0: 'No plan yet', 25: 'Worried', 50: 'Working on it', 75: 'On track', 100: 'Ahead of schedule' }
+  },
+  {
+    id: 'f5', capital: 'financial', cat: 'Financial Capital',
+    text: 'How much does money stress affect your daily peace of mind?',
+    type: 'choice',
+    options: [
+      { label: 'Constantly stressed about money', value: 10 },
+      { label: 'Often think about it with anxiety', value: 30 },
+      { label: 'Occasional concern', value: 55 },
+      { label: 'Rarely stressed about finances', value: 80 },
+      { label: 'Money is not a source of stress', value: 95 }
+    ]
+  },
+  {
+    id: 'f6', capital: 'financial', cat: 'Financial Capital',
+    text: 'How well do you understand your complete financial picture (assets, liabilities, tax strategy)?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'No visibility', maxLabel: 'Crystal clear',
+    valueLabels: { 0: 'Completely unclear', 25: 'Vague idea', 50: 'Decent overview', 75: 'Solid grasp', 100: 'Full command' }
+  },
+
+  // ── CAREER / HUMAN CAPITAL (6 questions) ──
+  {
+    id: 'c1', capital: 'career', cat: 'Career Capital',
+    text: 'How aligned is your current work with what energizes you most?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'Totally misaligned', maxLabel: 'Perfectly aligned',
+    valueLabels: { 0: 'Dreading it', 25: 'Mostly draining', 50: 'Mixed', 75: 'Mostly energizing', 100: 'Living my purpose' }
+  },
+  {
+    id: 'c2', capital: 'career', cat: 'Career Capital',
+    text: 'In 5 years, how relevant will your current skills be in the market?',
+    type: 'choice',
+    options: [
+      { label: 'Likely obsolete — AI or market shifts will displace me', value: 15 },
+      { label: 'At risk — need significant reskilling', value: 35 },
+      { label: 'Stable — but not growing', value: 55 },
+      { label: 'Strong — skills are in demand and evolving', value: 80 },
+      { label: 'Future-proof — I\'m building the next wave', value: 95 }
+    ]
+  },
+  {
+    id: 'c3', capital: 'career', cat: 'Career Capital',
+    text: 'How many hours per week do you invest in learning and skill development?',
+    type: 'choice',
+    options: [
+      { label: '0 hours — no time for it', value: 10 },
+      { label: '1–2 hours', value: 35 },
+      { label: '3–5 hours', value: 60 },
+      { label: '5–10 hours', value: 80 },
+      { label: '10+ hours — serious investment', value: 95 }
+    ]
+  },
+  {
+    id: 'c4', capital: 'career', cat: 'Career Capital',
+    text: 'How much autonomy do you have over how you spend your working hours?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'Zero autonomy', maxLabel: 'Full control',
+    valueLabels: { 0: 'Micromanaged', 25: 'Limited freedom', 50: 'Some flexibility', 75: 'High autonomy', 100: 'I set the rules' }
+  },
+  {
+    id: 'c5', capital: 'career', cat: 'Career Capital',
+    text: 'If you lost your current job tomorrow, how quickly could you replace your income?',
+    type: 'choice',
+    options: [
+      { label: 'Would take 6+ months', value: 15 },
+      { label: '3–6 months', value: 35 },
+      { label: '1–3 months', value: 60 },
+      { label: 'Within a month', value: 80 },
+      { label: 'Already have offers or could start something immediately', value: 95 }
+    ]
+  },
+  {
+    id: 'c6', capital: 'career', cat: 'Career Capital',
+    text: 'How well does your professional reputation open doors for you?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'No visibility', maxLabel: 'Known authority',
+    valueLabels: { 0: 'Unknown', 25: 'Some recognition', 50: 'Decent network', 75: 'Well connected', 100: 'Industry authority' }
+  },
+
+  // ── RELATIONSHIPS / SOCIAL CAPITAL (6 questions) ──
+  {
+    id: 'r1', capital: 'relationships', cat: 'Relationships Capital',
+    text: 'How many people in your life could you call at 2am in a real crisis?',
+    type: 'choice',
+    options: [
+      { label: 'Nobody', value: 10 },
+      { label: '1 person', value: 30 },
+      { label: '2–3 people', value: 60 },
+      { label: '4–5 people', value: 80 },
+      { label: '6+ people — strong safety net', value: 95 }
+    ]
+  },
+  {
+    id: 'r2', capital: 'relationships', cat: 'Relationships Capital',
+    text: 'How satisfied are you with the quality of your closest relationship (partner/spouse/best friend)?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'Deeply strained', maxLabel: 'Thriving',
+    valueLabels: { 0: 'In crisis', 25: 'Struggling', 50: 'Okay', 75: 'Strong', 100: 'Deeply fulfilling' }
+  },
+  {
+    id: 'r3', capital: 'relationships', cat: 'Relationships Capital',
+    text: 'How often do you meaningfully connect with friends or community (not just social media)?',
+    type: 'choice',
+    options: [
+      { label: 'Rarely or never', value: 10 },
+      { label: 'Once a month', value: 35 },
+      { label: 'A few times a month', value: 55 },
+      { label: 'Weekly', value: 75 },
+      { label: 'Multiple times a week', value: 95 }
+    ]
+  },
+  {
+    id: 'r4', capital: 'relationships', cat: 'Relationships Capital',
+    text: 'Do you have a mentor or advisor you trust for major life decisions?',
+    type: 'choice',
+    options: [
+      { label: 'No — I navigate alone', value: 15 },
+      { label: 'I have peers but no real mentor', value: 40 },
+      { label: 'One trusted advisor', value: 65 },
+      { label: 'Multiple mentors across different areas', value: 90 }
+    ]
+  },
+  {
+    id: 'r5', capital: 'relationships', cat: 'Relationships Capital',
+    text: 'How much time do you invest weekly in nurturing your most important relationships?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'Almost none', maxLabel: 'Generous investment',
+    valueLabels: { 0: 'Neglected', 25: 'Minimal', 50: 'Some effort', 75: 'Consistent', 100: 'Priority commitment' }
+  },
+  {
+    id: 'r6', capital: 'relationships', cat: 'Relationships Capital',
+    text: 'How would you describe the balance between giving and receiving in your relationships?',
+    type: 'choice',
+    options: [
+      { label: 'I give far more than I receive — feeling drained', value: 25 },
+      { label: 'Mostly giving, occasionally receiving', value: 45 },
+      { label: 'Fairly balanced', value: 75 },
+      { label: 'Healthy reciprocity — deeply mutual', value: 95 },
+      { label: 'I take more than I give — working on it', value: 30 }
+    ]
+  },
+
+  // ── HEALTH CAPITAL (6 questions) ──
+  {
+    id: 'h1', capital: 'health', cat: 'Health Capital',
+    text: 'How many days per week do you engage in intentional exercise or movement?',
+    type: 'choice',
+    options: [
+      { label: '0 days — sedentary', value: 10 },
+      { label: '1–2 days', value: 35 },
+      { label: '3–4 days', value: 65 },
+      { label: '5–6 days', value: 85 },
+      { label: 'Daily — movement is non-negotiable', value: 95 }
+    ]
+  },
+  {
+    id: 'h2', capital: 'health', cat: 'Health Capital',
+    text: 'How would you rate the quality of your sleep most nights?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'Terrible', maxLabel: 'Excellent',
+    valueLabels: { 0: 'Chronic insomnia', 25: 'Poor', 50: 'Inconsistent', 75: 'Generally good', 100: 'Deep & restorative' }
+  },
+  {
+    id: 'h3', capital: 'health', cat: 'Health Capital',
+    text: 'How well do you manage stress in your daily life?',
+    type: 'choice',
+    options: [
+      { label: 'Overwhelmed most of the time', value: 10 },
+      { label: 'Frequently stressed, struggling to cope', value: 30 },
+      { label: 'Manage okay but it takes a toll', value: 50 },
+      { label: 'Good tools — recover quickly from stress', value: 75 },
+      { label: 'Calm and resilient under pressure', value: 95 }
+    ]
+  },
+  {
+    id: 'h4', capital: 'health', cat: 'Health Capital',
+    text: 'How is your energy level throughout a typical day?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'Running on empty', maxLabel: 'High vitality',
+    valueLabels: { 0: 'Exhausted', 25: 'Low energy', 50: 'Up and down', 75: 'Steady energy', 100: 'Vibrant all day' }
+  },
+  {
+    id: 'h5', capital: 'health', cat: 'Health Capital',
+    text: 'When was your last comprehensive health checkup?',
+    type: 'choice',
+    options: [
+      { label: 'More than 3 years ago (or never)', value: 15 },
+      { label: '1–3 years ago', value: 40 },
+      { label: 'Within the past year', value: 70 },
+      { label: 'Within the past 6 months — proactive', value: 90 }
+    ]
+  },
+  {
+    id: 'h6', capital: 'health', cat: 'Health Capital',
+    text: 'How intentional are you about nutrition and what you put in your body?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'Not at all', maxLabel: 'Very intentional',
+    valueLabels: { 0: 'Eat whatever', 25: 'Trying', 50: 'Somewhat mindful', 75: 'Disciplined', 100: 'Dialed in' }
+  },
+
+  // ── SPIRITUAL CAPITAL (6 questions) ──
+  {
+    id: 's1', capital: 'spiritual', cat: 'Spiritual Capital',
+    text: 'How clear are you on your core life purpose or dharma?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'Completely lost', maxLabel: 'Crystal clear',
+    valueLabels: { 0: 'No idea', 25: 'Searching', 50: 'Emerging clarity', 75: 'Mostly clear', 100: 'Living it daily' }
+  },
+  {
+    id: 's2', capital: 'spiritual', cat: 'Spiritual Capital',
+    text: 'Do you have a consistent daily practice (meditation, prayer, journaling, contemplation)?',
+    type: 'choice',
+    options: [
+      { label: 'No practice at all', value: 10 },
+      { label: 'Occasional — when I remember', value: 30 },
+      { label: 'A few times per week', value: 55 },
+      { label: 'Most days — becoming consistent', value: 75 },
+      { label: 'Daily non-negotiable practice', value: 95 }
+    ]
+  },
+  {
+    id: 's3', capital: 'spiritual', cat: 'Spiritual Capital',
+    text: 'How well do your daily actions align with your deepest values?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'Major disconnect', maxLabel: 'Full alignment',
+    valueLabels: { 0: 'Living against values', 25: 'Significant gap', 50: 'Working on it', 75: 'Mostly aligned', 100: 'Values drive every choice' }
+  },
+  {
+    id: 's4', capital: 'spiritual', cat: 'Spiritual Capital',
+    text: 'How often do you experience a genuine sense of inner peace or gratitude?',
+    type: 'choice',
+    options: [
+      { label: 'Rarely or never', value: 10 },
+      { label: 'Occasionally', value: 35 },
+      { label: 'Once or twice a week', value: 55 },
+      { label: 'Most days', value: 80 },
+      { label: 'Daily — it\'s my baseline', value: 95 }
+    ]
+  },
+  {
+    id: 's5', capital: 'spiritual', cat: 'Spiritual Capital',
+    text: 'How engaged are you in service to others or a cause bigger than yourself?',
+    type: 'choice',
+    options: [
+      { label: 'Not at all right now', value: 10 },
+      { label: 'I want to but haven\'t started', value: 30 },
+      { label: 'Occasionally volunteer or contribute', value: 50 },
+      { label: 'Regular service or giving', value: 75 },
+      { label: 'Service is central to my identity', value: 95 }
+    ]
+  },
+  {
+    id: 's6', capital: 'spiritual', cat: 'Spiritual Capital',
+    text: 'If you reflected on this past year, how much personal growth have you experienced?',
+    type: 'slider',
+    min: 0, max: 100, step: 5, default: 50,
+    minLabel: 'Stagnant', maxLabel: 'Transformational',
+    valueLabels: { 0: 'Went backwards', 25: 'Barely moved', 50: 'Some growth', 75: 'Significant growth', 100: 'Life-changing year' }
+  }
+];
+
+const CAPITALS = ['financial', 'career', 'relationships', 'health', 'spiritual'];
+const CAPITAL_LABELS = {
+  financial: 'Financial',
+  career: 'Career',
+  relationships: 'Relationships',
+  health: 'Health',
+  spiritual: 'Spiritual'
+};
+const CAPITAL_ICONS = {
+  financial: '💰',
+  career: '🚀',
+  relationships: '🤝',
+  health: '💪',
+  spiritual: '🧘'
+};
+const CAPITAL_COLORS = {
+  financial: '#0d7377',
+  career: '#6b4c9a',
+  relationships: '#e07052',
+  health: '#1a8a5c',
+  spiritual: '#d4940a'
+};
+
+let currentQ = 0;
+let answers = {};
+let userName = '';
+let userAge = '';
+let userCountry = '';
+
+// ─── NAVIGATION ───
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function startAssessment() {
+  showScreen('setupScreen');
+}
+
+function toggleCanada() {
+  const sel = document.getElementById('userCountry').value;
+  const cf = document.getElementById('canadaFields');
+  cf.classList.toggle('visible', sel === 'CA');
+}
+
+function beginQuestions() {
+  userName = document.getElementById('userName').value.trim() || 'Friend';
+  userAge = document.getElementById('userAge').value || '';
+  userCountry = document.getElementById('userCountry').value;
+  currentQ = 0;
+  answers = {};
+  
+  document.getElementById('progressBar').classList.add('visible');
+  buildProgressDots();
+  showScreen('questionScreen');
+  renderQuestion();
+}
+
+function buildProgressDots() {
+  const dots = document.getElementById('progressDots');
+  dots.innerHTML = CAPITALS.map((c, i) => `<div class="progress-dot" data-idx="${i}"></div>`).join('');
+}
+
+function updateProgress() {
+  const total = QUESTIONS.length;
+  const pct = ((currentQ + 1) / total) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = `${currentQ + 1} / ${total}`;
+  
+  const q = QUESTIONS[currentQ];
+  const catCss = `cat-${q.capital}`;
+  document.getElementById('progressLabel').innerHTML = `${CAPITAL_ICONS[q.capital]} ${q.cat}`;
+  
+  // Update section dots
+  const currentCapIdx = CAPITALS.indexOf(q.capital);
+  document.querySelectorAll('.progress-dot').forEach((dot, i) => {
+    dot.className = 'progress-dot';
+    if (i < currentCapIdx) dot.classList.add('done');
+    else if (i === currentCapIdx) dot.classList.add('active');
+  });
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[currentQ];
+  const card = document.getElementById('questionCard');
+  card.setAttribute('data-capital', q.capital);
+  
+  const catEl = document.getElementById('questionCat');
+  catEl.className = `question-category cat-${q.capital}`;
+  catEl.textContent = q.cat;
+  
+  document.getElementById('questionText').textContent = q.text;
+  
+  const body = document.getElementById('questionBody');
+  const prev = answers[q.id];
+  
+  if (q.type === 'slider') {
+    const val = prev !== undefined ? prev : q.default;
+    const closestLabel = getClosestLabel(val, q.valueLabels);
+    body.innerHTML = `
+      <div class="slider-container">
+        <div class="slider-labels">
+          <span>${q.minLabel}</span>
+          <span>${q.maxLabel}</span>
+        </div>
+        <div class="slider-track">
+          <input type="range" id="sliderInput" min="${q.min}" max="${q.max}" step="${q.step}" value="${val}"
+            oninput="updateSliderDisplay(this.value)">
+        </div>
+        <div class="slider-value" id="sliderVal">${val}</div>
+        <div class="slider-value-label" id="sliderLabel">${closestLabel}</div>
+      </div>
+    `;
+    updateSliderTrackColor(val, q.max);
+  } else {
+    body.innerHTML = `
+      <div class="choices">
+        ${q.options.map((o, i) => `
+          <button class="choice-btn ${prev === o.value ? 'selected' : ''}" onclick="selectChoice(this, ${o.value})">
+            <div class="choice-radio"></div>
+            ${o.label}
+          </button>
+        `).join('')}
+      </div>
+    `;
+  }
+  
+  document.getElementById('btnBack').style.visibility = currentQ === 0 ? 'hidden' : 'visible';
+  
+  const nextBtn = document.getElementById('btnNext');
+  if (currentQ === QUESTIONS.length - 1) {
+    nextBtn.innerHTML = 'See Results <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+  } else {
+    nextBtn.innerHTML = 'Next <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+  }
+  
+  updateProgress();
+  
+  // Re-trigger animation
+  card.style.animation = 'none';
+  card.offsetHeight;
+  card.style.animation = '';
+}
+
+function getClosestLabel(val, labels) {
+  if (!labels) return '';
+  const keys = Object.keys(labels).map(Number).sort((a, b) => a - b);
+  let closest = keys[0];
+  for (const k of keys) {
+    if (Math.abs(k - val) < Math.abs(closest - val)) closest = k;
+  }
+  return labels[closest];
+}
+
+function updateSliderDisplay(val) {
+  val = Number(val);
+  document.getElementById('sliderVal').textContent = val;
+  const q = QUESTIONS[currentQ];
+  document.getElementById('sliderLabel').textContent = getClosestLabel(val, q.valueLabels);
+  answers[q.id] = val;
+  updateSliderTrackColor(val, q.max);
+}
+
+function updateSliderTrackColor(val, max) {
+  const slider = document.getElementById('sliderInput');
+  if (!slider) return;
+  const pct = (val / max) * 100;
+  const capital = QUESTIONS[currentQ].capital;
+  const color = CAPITAL_COLORS[capital];
+  slider.style.background = `linear-gradient(to right, ${color} 0%, ${color} ${pct}%, #e5e2de ${pct}%, #e5e2de 100%)`;
+}
+
+function selectChoice(btn, value) {
+  btn.parentElement.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[QUESTIONS[currentQ].id] = value;
+}
+
+function nextQuestion() {
+  const q = QUESTIONS[currentQ];
+  
+  // For sliders, save current value
+  if (q.type === 'slider') {
+    const slider = document.getElementById('sliderInput');
+    if (slider) answers[q.id] = Number(slider.value);
+  }
+  
+  // Check if answered
+  if (answers[q.id] === undefined) {
+    // Highlight unanswered
+    const card = document.getElementById('questionCard');
+    card.style.boxShadow = '0 0 0 2px var(--coral)';
+    setTimeout(() => card.style.boxShadow = '', 1000);
+    return;
+  }
+  
+  if (currentQ < QUESTIONS.length - 1) {
+    currentQ++;
+    renderQuestion();
+  } else {
+    showResults();
+  }
+}
+
+function prevQuestion() {
+  if (currentQ > 0) {
+    currentQ--;
+    renderQuestion();
+  }
+}
+
+// ─── RESULTS ───
+function calculateScores() {
+  const scores = {};
+  CAPITALS.forEach(cap => {
+    const qs = QUESTIONS.filter(q => q.capital === cap);
+    const vals = qs.map(q => answers[q.id] || 0);
+    scores[cap] = Math.round(vals.reduce((a, b) => a + b, 0) / vals.length);
+  });
+  scores.overall = Math.round(
+    Object.values(scores).reduce((a, b) => a + b, 0) / CAPITALS.length
+  );
+  return scores;
+}
+
+function getScoreDescriptor(score) {
+  if (score >= 85) return { text: 'Exceptional', color: '#1a8a5c' };
+  if (score >= 70) return { text: 'Strong Foundation', color: '#0d7377' };
+  if (score >= 55) return { text: 'Room to Grow', color: '#d4940a' };
+  if (score >= 40) return { text: 'Needs Attention', color: '#e07052' };
+  return { text: 'Critical Priority', color: '#c44e4e' };
+}
+
+function showResults() {
+  document.getElementById('progressBar').classList.remove('visible');
+  showScreen('resultsScreen');
+  
+  const scores = calculateScores();
+  
+  // Greeting
+  document.getElementById('resultsGreeting').textContent = 
+    `${userName}'s Life Portfolio Score`;
+  
+  // Overall
+  const desc = getScoreDescriptor(scores.overall);
+  animateNumber('overallScore', scores.overall, '/100');
+  document.getElementById('overallDesc').textContent = desc.text;
+  document.getElementById('overallDesc').style.color = desc.color;
+  
+  // Radar
+  drawRadar(scores);
+  
+  // Capital rows
+  const container = document.getElementById('capitalScores');
+  container.innerHTML = CAPITALS.map(cap => {
+    const s = scores[cap];
+    const d = getScoreDescriptor(s);
+    const insight = getCapitalInsight(cap, s);
+    return `
+      <div class="capital-row">
+        <div class="capital-icon ${cap}">${CAPITAL_ICONS[cap]}</div>
+        <div class="capital-info">
+          <div class="capital-name">${CAPITAL_LABELS[cap]} Capital</div>
+          <div class="capital-bar-track">
+            <div class="capital-bar-fill ${cap}" id="bar-${cap}"></div>
+          </div>
+          <div class="capital-insight">${insight}</div>
+        </div>
+        <div class="capital-score-num">${s}</div>
+      </div>
+    `;
+  }).join('');
+  
+  // Animate bars
+  setTimeout(() => {
+    CAPITALS.forEach(cap => {
+      document.getElementById(`bar-${cap}`).style.width = scores[cap] + '%';
+    });
+  }, 100);
+  
+  // Insights
+  renderInsights(scores);
+}
+
+function animateNumber(id, target, suffix) {
+  const el = document.getElementById(id);
+  let current = 0;
+  const step = Math.ceil(target / 40);
+  const timer = setInterval(() => {
+    current += step;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    el.innerHTML = current + `<sup>${suffix}</sup>`;
+  }, 25);
+}
+
+function getCapitalInsight(capital, score) {
+  const insights = {
+    financial: {
+      high: 'Your financial foundation is strong. Focus on optimizing, not accumulating.',
+      mid: 'You have momentum — closing gaps in savings rate or diversification would accelerate your freedom timeline.',
+      low: 'Financial stress is likely bleeding into other areas. Start with visibility: know your exact numbers.'
+    },
+    career: {
+      high: 'You\'re in a powerful position. The question is: are you building leverage or just earning?',
+      mid: 'Your career is stable but may not be future-proof. Invest in skills that compound.',
+      low: 'Career misalignment is draining your energy. This is often the first domino to address.'
+    },
+    relationships: {
+      high: 'Your social capital is a real asset. These connections will matter most in transitions.',
+      mid: 'You have relationships but may be under-investing in the ones that matter most.',
+      low: 'Isolation compounds every other challenge. Even one deeper connection can shift everything.'
+    },
+    health: {
+      high: 'Your physical foundation supports everything else. Protect it — it\'s your ultimate asset.',
+      mid: 'Inconsistency here creates a slow leak across all other capitals. Routines are your friend.',
+      low: 'Health is the multiplier of everything. Without it, no amount of wealth or success matters.'
+    },
+    spiritual: {
+      high: 'This clarity is rare and valuable. It\'s likely the engine behind your best decisions.',
+      mid: 'You\'re searching — which is itself a practice. More consistency would accelerate clarity.',
+      low: 'Without purpose alignment, even success can feel hollow. This is worth exploring first.'
+    }
+  };
+  
+  if (score >= 70) return insights[capital].high;
+  if (score >= 45) return insights[capital].mid;
+  return insights[capital].low;
+}
+
+function renderInsights(scores) {
+  const sorted = CAPITALS.map(c => ({ cap: c, score: scores[c] }))
+    .sort((a, b) => b.score - a.score);
+  
+  const strongest = sorted[0];
+  const weakest = sorted[sorted.length - 1];
+  
+  // Find biggest gap
+  const gaps = [];
+  for (let i = 0; i < sorted.length - 1; i++) {
+    gaps.push({
+      from: sorted[i + 1].cap,
+      to: sorted[i].cap,
+      gap: sorted[i].score - sorted[i + 1].score
+    });
+  }
+  const biggestGap = gaps.sort((a, b) => b.gap - a.gap)[0];
+  
+  const list = document.getElementById('insightsList');
+  list.innerHTML = `
+    <div class="insight-item">
+      <div class="insight-icon strength">💎</div>
+      <div class="insight-content">
+        <h4>Your Strongest Capital: ${CAPITAL_LABELS[strongest.cap]}</h4>
+        <p>At ${strongest.score}/100, this is your foundation. Leverage it — high performers build from strength, not just fix weaknesses.</p>
+      </div>
+    </div>
+    <div class="insight-item">
+      <div class="insight-icon growth">🎯</div>
+      <div class="insight-content">
+        <h4>Biggest Growth Opportunity: ${CAPITAL_LABELS[weakest.cap]}</h4>
+        <p>At ${weakest.score}/100, this is where small improvements will have the largest ripple effect across your entire life portfolio.</p>
+      </div>
+    </div>
+    ${biggestGap && biggestGap.gap > 15 ? `
+    <div class="insight-item">
+      <div class="insight-icon tip">⚡</div>
+      <div class="insight-content">
+        <h4>Imbalance Alert: ${biggestGap.gap}-Point Gap</h4>
+        <p>The spread between your ${CAPITAL_LABELS[biggestGap.to]} (${scores[biggestGap.to]}) and ${CAPITAL_LABELS[biggestGap.from]} (${scores[biggestGap.from]}) capitals suggests an imbalance that may create friction over time.</p>
+      </div>
+    </div>
+    ` : `
+    <div class="insight-item">
+      <div class="insight-icon tip">⚡</div>
+      <div class="insight-content">
+        <h4>Well-Balanced Portfolio</h4>
+        <p>Your capitals are relatively balanced (max gap of ${biggestGap ? biggestGap.gap : 0} points). This is rare and valuable — it means improvements in any area will compound across all others.</p>
+      </div>
+    </div>
+    `}
+  `;
+}
+
+// ─── RADAR CHART (Canvas) ───
+function drawRadar(scores) {
+  const canvas = document.getElementById('radarChart');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  
+  canvas.width = 340 * dpr;
+  canvas.height = 340 * dpr;
+  canvas.style.width = '340px';
+  canvas.style.height = '340px';
+  ctx.scale(dpr, dpr);
+  
+  const cx = 170, cy = 170, maxR = 130;
+  const labels = CAPITALS;
+  const n = labels.length;
+  const angleStep = (2 * Math.PI) / n;
+  const startAngle = -Math.PI / 2;
+  
+  ctx.clearRect(0, 0, 340, 340);
+  
+  // Grid
+  [0.2, 0.4, 0.6, 0.8, 1.0].forEach(level => {
+    ctx.beginPath();
+    for (let i = 0; i <= n; i++) {
+      const angle = startAngle + i * angleStep;
+      const x = cx + maxR * level * Math.cos(angle);
+      const y = cy + maxR * level * Math.sin(angle);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(26,39,68,0.08)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  });
+  
+  // Axis lines
+  for (let i = 0; i < n; i++) {
+    const angle = startAngle + i * angleStep;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + maxR * Math.cos(angle), cy + maxR * Math.sin(angle));
+    ctx.strokeStyle = 'rgba(26,39,68,0.08)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+  
+  // Data polygon
+  const vals = labels.map(l => (scores[l] || 0) / 100);
+  
+  ctx.beginPath();
+  for (let i = 0; i <= n; i++) {
+    const idx = i % n;
+    const angle = startAngle + idx * angleStep;
+    const r = maxR * vals[idx];
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(13,115,119,0.12)';
+  ctx.fill();
+  ctx.strokeStyle = '#0d7377';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+  
+  // Data points and labels
+  for (let i = 0; i < n; i++) {
+    const angle = startAngle + i * angleStep;
+    const r = maxR * vals[i];
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    
+    // Point
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, 2 * Math.PI);
+    ctx.fillStyle = CAPITAL_COLORS[labels[i]];
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    // Label
+    const lx = cx + (maxR + 28) * Math.cos(angle);
+    const ly = cy + (maxR + 28) * Math.sin(angle);
+    ctx.font = '500 12px "Plus Jakarta Sans"';
+    ctx.fillStyle = '#1a2744';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    
+    const icon = CAPITAL_ICONS[labels[i]];
+    const label = CAPITAL_LABELS[labels[i]];
+    
+    // Adjust label position
+    let adjY = ly;
+    if (i === 0) adjY -= 4; // top
+    if (i === 2 || i === 3) adjY += 4; // bottom
+    
+    ctx.fillText(`${icon} ${label}`, lx, adjY);
+    
+    // Score below label
+    ctx.font = '600 11px "JetBrains Mono"';
+    ctx.fillStyle = CAPITAL_COLORS[labels[i]];
+    ctx.fillText(scores[labels[i]], lx, adjY + 16);
+  }
+}
+
+// ─── EMAIL / PDF ───
+function submitEmail() {
+  const email = document.getElementById('pdfEmail').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('pdfEmail').style.borderColor = 'rgba(224,112,82,0.6)';
+    return;
+  }
+  
+  // In production: send to backend
+  console.log('Email captured:', email);
+  
+  document.getElementById('emailForm').style.display = 'none';
+  document.getElementById('pdfSuccess').style.display = 'block';
+}
+
+function retake() {
+  currentQ = 0;
+  answers = {};
+  showScreen('introScreen');
+}
+</script>
+</body>
+</html>
